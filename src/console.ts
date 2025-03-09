@@ -1,7 +1,7 @@
 import { blue, green, red, yellow } from 'colorette';
 
 export interface Inotice {
-    comment: string;
+    notice: string;
     path?: string;
     name?: string;
     silent?: boolean;
@@ -93,14 +93,14 @@ export function error({
 export function notice({
     path,
     name,
-    comment,
+    notice,
     silent,
     space = true
 }: Inotice): void {
     if (!silent) {
         space ? console.log('') : null;
         console.log(`> type: ${blue('notice')}`);
-        comment ? console.log(`notice: ${comment}`) : null;
+        notice ? console.log(`notice: ${notice}`) : null;
         name ? console.log(`> name: ${name}`) : null;
         path ? console.log(`> path: ${path}`) : null;
         space ? console.log('') : null;
