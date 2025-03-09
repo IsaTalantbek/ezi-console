@@ -1,7 +1,7 @@
 import { blue, green, red, yellow } from 'colorette';
 
 export interface Inotice {
-    notice: string;
+    comment: string;
     path?: string;
     name?: string;
     silent?: boolean;
@@ -27,8 +27,9 @@ export interface Ierror {
 }
 
 export interface Icustom {
-    type: string;
+    type: string | null;
     comment?: string;
+    commentKey?: string | null;
     path?: string;
     name?: string;
     silent?: boolean;
@@ -36,7 +37,7 @@ export interface Icustom {
 }
 
 export interface Ione {
-    key: string;
+    key: string | null;
     value: string;
 }
 
@@ -82,7 +83,7 @@ export function error({
  * Displays a notice message with optional details.
  *
  * @param options - The notice message options
- * @param options.notice - Required. The main content of the notice message
+ * @param options.comment - Required. The main content of the notice message
  * @param options.path - Optional. The file path associated with the notice
  * @param options.name - Optional. The name associated with the notice
  * @param options.silent - Optional. if true, nothing is output to the console
@@ -92,14 +93,14 @@ export function error({
 export function notice({
     path,
     name,
-    notice,
+    comment,
     silent,
     space = true
 }: Inotice): void {
     if (!silent) {
         space ? console.log('') : null;
         console.log(`> type: ${blue('notice')}`);
-        notice ? console.log(`> notice: ${notice}`) : null;
+        comment ? console.log(`notice: ${comment}`) : null;
         name ? console.log(`> name: ${name}`) : null;
         path ? console.log(`> path: ${path}`) : null;
         space ? console.log('') : null;
@@ -111,9 +112,9 @@ export function notice({
  *
  * @param options - The warning message options
  * @param options.warn - Required. Warn message
+ * @param options.comment - Optional. The main content of the warning message
  * @param options.path - Optional. The file path associated with the warning
  * @param options.name - Optional. The name associated with the warning
- * @param options.comment - Optional. The main content of the warning message
  * @param options.silent - Optional. if true, nothing is output to the console
  * @param optioms.space - Optional. Default true. If true, adds an empty line at the beginning and end
  * @returns void
@@ -130,7 +131,7 @@ export function warn({
         space ? console.log('') : null;
         console.log(`> type: ${yellow('warn')}`);
         warn ? console.log(`> warn: ${warn}`) : null;
-        comment ? console.log(`> comment: ${comment}`) : null;
+        comment ? console.error(`> comment: ${comment}`) : null;
         name ? console.log(`> name: ${name}`) : null;
         path ? console.log(`> path: ${path}`) : null;
         space ? console.log('') : null;
@@ -142,6 +143,7 @@ export function warn({
  * @param options - The custom message options
  * @param options.type - Required, The type of the custom message
  * @param options.comment - Optional. The main content of the custom message
+ * @param options.commentKey - Optional. Key for the comment value. By default 'comment', if null, there will be no key
  * @param options.path - Optional. The file path associated with the message
  * @param options.name - Optional. The name associated with the message
  * @param options.silent - Optional. if true, nothing is output to the console
@@ -153,13 +155,18 @@ export function custom({
     path,
     name,
     comment,
+    commentKey = 'comment',
     silent,
     space = true
 }: Icustom): void {
     if (!silent) {
         space ? console.log('') : null;
-        console.log(`> type: ${green(type)}`);
-        comment ? console.log(`> comment: ${comment}`) : null;
+        type ? console.log(`> type: ${green(type)}`) : null;
+        comment
+            ? console.error(
+                  `> ${commentKey === null ? '' : `${commentKey}: `}${comment}`
+              )
+            : null;
         name ? console.log(`> name: ${name}`) : null;
         path ? console.log(`> path: ${path}`) : null;
         space ? console.log('') : null;
@@ -174,7 +181,7 @@ export function custom({
  * @returns void
  */
 export function one({ key, value }: Ione): void {
-    console.log(`> ${key}: ${value}`);
+    console.error(`> ${key === null ? '' : `${key}: `}${value}`);
 }
 
 export const ezcl: EziConsole = {

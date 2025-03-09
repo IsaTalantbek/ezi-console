@@ -58,13 +58,13 @@ you can turn off empty lines
 
 ```js
 ezcl.custom({
-    type: 'test',
-    comment: 'Hello World'
+    type: null,
+    comment: 'Hello World',
+    commentKey: 'message',
     space: false
 });
 ```
 
 ```bash
-> type: test
-> comment: Hello World
+> message: Hello World
 ```
