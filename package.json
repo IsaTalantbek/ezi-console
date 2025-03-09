@@ -1,10 +1,16 @@
 {
     "name": "ezi-console",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "license": "ISC",
     "main": "./dist/cjs/index.js",
     "module": "./dist/esm/index.js",
     "types": "./dist/esm/index.d.ts",
+    "exports": {
+        ".": {
+            "require": "./dist/cjs/index.js",
+            "import": "./dist/esm/index.js"
+        }
+    },
     "author": "isat",
     "files": [
         "dist"

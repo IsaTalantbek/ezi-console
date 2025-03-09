@@ -177,12 +177,10 @@ export function one({ key, value }: Ione): void {
     console.log(`> ${key}: ${value}`);
 }
 
-const ezcl: EziConsole = {
+export const ezcl: EziConsole = {
     error,
     notice,
     warn,
     custom,
     one
 };
-
-export default ezcl;
