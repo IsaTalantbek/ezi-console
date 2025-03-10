@@ -8,6 +8,8 @@ ezcl.notice({
 });
 ```
 
+">" is part of the output
+
 ```bash
 # there is an empty line here
 > type: notice

@@ -100,7 +100,7 @@ export function notice({
     if (!silent) {
         space ? console.log('') : null;
         console.log(`> type: ${blue('notice')}`);
-        notice ? console.log(`notice: ${notice}`) : null;
+        notice ? console.log(`> notice: ${notice}`) : null;
         name ? console.log(`> name: ${name}`) : null;
         path ? console.log(`> path: ${path}`) : null;
         space ? console.log('') : null;
