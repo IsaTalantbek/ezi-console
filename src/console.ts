@@ -33,6 +33,7 @@ export interface Icustom {
     path?: string;
     name?: string;
     silent?: boolean;
+    exit?: boolean;
     space?: boolean;
 }
 
@@ -68,7 +69,7 @@ export function error({
     error,
     exit,
     space = true
-}: Ierror): void {
+}: Ierror): void | never {
     space ? console.log('') : null;
     console.error(`> type: ${red('error')}`);
     console.error(`> error: ${red(error)}`);
@@ -147,6 +148,7 @@ export function warn({
  * @param options.path - Optional. The file path associated with the message
  * @param options.name - Optional. The name associated with the message
  * @param options.silent - Optional. if true, nothing is output to the console
+ * @param options.exit - Optional. If true, process.exit(1)
  * @param options.space - Optional. Default true. If true, adds an empty line at the beginning and end
  * @returns void
  */
@@ -157,8 +159,9 @@ export function custom({
     comment,
     commentKey = 'comment',
     silent,
+    exit,
     space = true
-}: Icustom): void {
+}: Icustom): void | never {
     if (!silent) {
         space ? console.log('') : null;
         type ? console.log(`> type: ${green(type)}`) : null;
@@ -170,6 +173,7 @@ export function custom({
         name ? console.log(`> name: ${name}`) : null;
         path ? console.log(`> path: ${path}`) : null;
         space ? console.log('') : null;
+        exit ? process.exit(1) : null;
     }
 }
 /**
