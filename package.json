@@ -1,6 +1,6 @@
 {
     "name": "ezi-console",
-    "version": "1.1.7",
+    "version": "1.2.0",
     "license": "ISC",
     "main": "./dist/cjs/index.js",
     "module": "./dist/esm/index.js",
@@ -16,7 +16,7 @@
         "dist"
     ],
     "scripts": {
-        "build": "tsc -p tsconfig.cjs.json && tsc -p tsconfig.esm.json",
+        "build": "npm run build:cjs && npm run build:esm",
         "build:cjs": "tsc -p tsconfig.cjs.json",
         "build:esm": "tsc -p tsconfig.esm.json"
     },

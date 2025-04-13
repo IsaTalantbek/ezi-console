@@ -12,27 +12,27 @@ ezcl.notice({
 
 ```bash
 # there is an empty line here
-> type: notice
+> [notice]
 > notice: Hello World
 # there is an empty line here
 ```
 
-Although it is not visible here, type: notice is blue colored
+Although it is not visible here, "notice" is blue colored
 
 ```js
 ezcl.error({
     error: 'Oops, error',
-    comment: 'Fix pls',
+    comment: 'use --help',
     path: './this/func.js',
-    exit: true
+    exit: true // process.exit(1)
 });
 ```
 
 ```bash
 # there is an empty line here
-> type: error
+> [error]
 > error: Oops, error
-> comment: Fix, pls
+> comment: use --help
 > path: ./this/func.js
 # there is an empty line here
 ```
@@ -49,7 +49,7 @@ ezcl.warn({
 
 ```bash
 # there is an empty line here
-> type: warn
+> [warn]
 > warn: This flag is no longer relevant
 > comment: please use -D
 > name: --save-dev
@@ -60,13 +60,12 @@ you can turn off empty lines
 
 ```js
 ezcl.custom({
-    type: null,
-    comment: 'Hello World',
-    commentKey: 'message',
-    space: false
+    type: '_cool_',
+    'my-message': 'Hello World!'
 });
 ```
 
 ```bash
-> message: Hello World
+> [_cool_] # Green colour
+> my-message: Hello World
 ```
